@@ -1,1 +1,1 @@
-https://download1654.mediafire.com/p9qvdao0z9ngBUpW2PzHJCLPs1euSFBIvF_NvpPTXd0j5x_pkGjBHqqN9L6y8YgsgEsXw6WOXMHYego3lAFXjYWXnr-RayuPquHOO138-F7EdP8YIBC7jLmfhU7fzzmfqcwqTv2nTwYcctw09wuBXXam4e1BPQLm6F9MSKQFMvZgRQ/7tglo09fkaej0y4/llvm-mingw-20241015-msvcrt-x86_64.zip
+https://github.com/mstorsjo/llvm-mingw/releases/download/20241030/llvm-mingw-20241030-msvcrt-x86_64.zip
