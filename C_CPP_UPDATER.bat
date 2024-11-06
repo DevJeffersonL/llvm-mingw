@@ -60,4 +60,4 @@ if exist "!FileURL!" (
     del /Q "!FileURL!"
 )
 PAUSE
-endlocal
+ENDLOCAL
