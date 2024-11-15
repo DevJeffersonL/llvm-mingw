@@ -7,13 +7,12 @@ set "llvmMingwDir=!USERPROFILE!\LLVM_MINGW"
 set "subName=LLVM_MINGW"
 set "folderName="
 ::-> Path Checking and Adding
-powershell -Command "$addPath = [System.IO.Path]::Combine($([System.Environment]::GetFolderPath('UserProfile')), 'LLVM_MINGW', 'LLVM_MINGW', 'bin'); $currentUserPath = [Environment]::GetEnvironmentVariable('Path', 'User'); if ($currentUserPath -notlike \"*$addPath*\") { $newUserPath = \"$currentUserPath;$addPath\"; [Environment]::SetEnvironmentVariable('Path', $newUserPath, 'User'); Write-Output \"The path '$addPath' was not present and has been appended to the user Path variable.\" } else { Write-Output \"The path '$addPath' is already present in the user Path variable.\" }"
-cls
+powershell -Command "$addPath = [System.IO.Path]::Combine($([System.Environment]::GetFolderPath('UserProfile')), 'LLVM_MINGW', 'LLVM_MINGW', 'bin'); $currentUserPath = [Environment]::GetEnvironmentVariable('Path', 'User'); if ($currentUserPath -notlike \"*$addPath*\") { $newUserPath = \"$currentUserPath;$addPath\"; [Environment]::SetEnvironmentVariable('Path', $newUserPath, 'User') }"
 ::
 if exist !FileURL! (
 	curl https://raw.githubusercontent.com/DevJeffersonL/llvm-mingw/refs/heads/main/llvm_mingw02112024.txt >!FileURL!
 ) else (
-	curl https://raw.githubusercontent.com/DevJeffersonL/llvm-mingw/refs/heads/main/llvm_mingw02112024.txt >!FileURL!
+	curl https://raw.githubusercontent.com/DevJeffersonL/llvm-mingw/refs/heads/main/llvm_mingw02112024.txt >>!FileURL!
 )
 ::---------------------------------------------------
 REM Read the first line of the file
@@ -29,7 +28,7 @@ IF EXIST "!zipName!" (
     )
     REM DOWNLOAD THE LLVM-MINGW COMPILER WITH CuRL
     curl -L  -o !zipName! !mingw_url!
-) else (
+) ELSE (
     REM DOWNLOAD THE LLVM-MINGW COMPILER WITH CuRL
     curl -L  -o !zipName! !mingw_url!
 )
@@ -58,5 +57,4 @@ if exist "!zipName!" (
 if exist "!FileURL!" (
     del /Q "!FileURL!"
 )
-PAUSE
 ENDLOCAL
