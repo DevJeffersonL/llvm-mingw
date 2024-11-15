@@ -1,0 +1,11 @@
+{
+    "target": "terminus_exec",
+    "auto_close": false,
+    "timeit": true,
+    "focus": true,
+    "title": "C OUTPUT",
+    "shell_cmd": "DEL /Q \"%USERPROFILE%\\c_cpp_main.bat\" \"%USERPROFILE%\\c_cpp_main.exe\" > NUL 2>&1 && echo @echo off >> \"%USERPROFILE%\\c_cpp_main.bat\" && echo TASKKILL /F /IM c_cpp_main.exe >> \"%USERPROFILE%\\c_cpp_main.bat\" && echo del %0 >> \"%USERPROFILE%\\c_cpp_main.bat\" && start /B cmd /k \"%USERPROFILE%\\c_cpp_main.bat\" > NUL 2>&1 && gcc -std=c23 \"$file\" -o \"%USERPROFILE%\\c_cpp_main.exe\" && echo. && \"%USERPROFILE%\\c_cpp_main.exe\" && del /Q \"%USERPROFILE%\\c_cpp_main.exe\" > NUL 2>&1 && del /Q \"%USERPROFILE%\\c_cpp_main.bat\" > NUL 2>&1",
+    "file_regex": "^(..[^:]*):([0-9]+):?([0-9]+)?:? (.*)$",
+    "working_dir": "$file_path",
+    "selector": "source.c, source.cpp, source.c++, source.CPP"
+}
