@@ -1,7 +1,8 @@
 @ECHO OFF
 ECHO.
-ECHO        ::::::::: UPDATING C_CPP_COMPILER ::::::::::
+ECHO        :::::::::: DO YOU WANT TO UPDATE C_CPP_COMPILER ::::::::::::
 ECHO. 
+PAUSE
 SETLOCAL ENABLEDELAYEDEXPANSION
 ::
 set "FileURL=llvm_mingw.txt"
@@ -9,7 +10,6 @@ set "zipName=llvm_mingw02112024.zip"
 set "llvmMingwDir=!USERPROFILE!\LLVM_MINGW"
 set "subName=LLVM_MINGW"
 set "folderName="
-set ""
 ::-> Path Checking and Adding
 powershell -Command "$addPath = [System.IO.Path]::Combine($([System.Environment]::GetFolderPath('UserProfile')), 'LLVM_MINGW', 'LLVM_MINGW', 'bin'); $currentUserPath = [Environment]::GetEnvironmentVariable('Path', 'User'); if ($currentUserPath -notlike \"*$addPath*\") { $newUserPath = \"$currentUserPath;$addPath\"; [Environment]::SetEnvironmentVariable('Path', $newUserPath, 'User') }"
 ::
@@ -43,6 +43,8 @@ if exist "!zipName!" (
     )
     :: Use PowerShell to extract the ZIP file
     PowerShell -Command "Expand-Archive -Path '!zipName!' -DestinationPath '!llvmMingwDir!' -Force"
+) else (
+    echo " !zipName! Does Not Exist"
 )
 ::->
 for /d %%F in ("%llvmMingwDir%\*") do (
@@ -59,9 +61,4 @@ if exist "!zipName!" (
 if exist "!FileURL!" (
     del /Q "!FileURL!"
 )
-ECHO MsgBox "COMPLETED", vbInformation, "C_CPP_UPDATING......." >!USERPROFILE!\tEmP.vbs
-ECHO Set oFso = CreateObject("Scripting.FileSystemObject") : oFso.DeleteFile Wscript.ScriptFullName, True >>!USERPROFILE!\tEmP.vbs
-START !USERPROFILE!\tEmP.vbs
 ENDLOCAL
-DEL %0
-

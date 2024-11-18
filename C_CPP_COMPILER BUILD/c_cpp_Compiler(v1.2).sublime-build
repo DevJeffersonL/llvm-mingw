@@ -4,7 +4,7 @@
     "timeit": true,
     "focus": true,
     "title": "C OUTPUT",
-    "shell_cmd": "START /B TASKKILL /F /IM c_cpp_main.exe >NUL 2>&1 && ( if /i \"${file_extension}\"==c ( gcc -std=c23 \"${file}\" -o \"%USERPROFILE%\\c_cpp_main.exe\" ) else if /i \"${file_extension}\"==c++ ( g++ \"${file}\" -o \"%USERPROFILE%\\c_cpp_main.exe\" ) else if /i \"${file_extension}\"==cpp (g++ -std=c++23 \"${file}\" -o \"%USERPROFILE%\\c_cpp_main.exe\") else ( ECHO. > NUL 2>&1) ) && \"%USERPROFILE%\\c_cpp_main.exe\" && del /f /q \"%USERPROFILE%\\c_cpp_main.exe\" >NUL 2>&1",
+    "shell_cmd": "START /B TASKKILL /F /IM c_cpp_main.exe >NUL 2>&1 && ( if /i \"${file_extension}\"==c ( gcc -std=c23 \"${file}\" -o \"%USERPROFILE%\\c_cpp_main.exe\" ) else if /i \"${file_extension}\"==c++ ( g++ -std=c++23 \"${file}\" -o \"%USERPROFILE%\\c_cpp_main.exe\" ) else if /i \"${file_extension}\"==cpp (g++ -std=c++23 \"${file}\" -o \"%USERPROFILE%\\c_cpp_main.exe\")) && \"%USERPROFILE%\\c_cpp_main.exe\" && DEL /f /q \"%USERPROFILE%\\c_cpp_main.exe\" >NUL 2>&1",
     "file_regex": "^(..[^:]*):([0-9]+):?([0-9]+)?:? (.*)$",
     "working_dir": "$file_path",
     "selector": "source.c, source.cpp, source.c++,"
