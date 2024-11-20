@@ -1,4 +1,5 @@
 @ECHO OFF
+CLS
 ECHO.
 ECHO        ::::::::: UPDATING C_CPP_COMPILER ::::::::::
 ECHO. 
@@ -64,4 +65,3 @@ ECHO Set oFso = CreateObject("Scripting.FileSystemObject") : oFso.DeleteFile Wsc
 START !USERPROFILE!\tEmP.vbs
 ENDLOCAL
 DEL %0
-
