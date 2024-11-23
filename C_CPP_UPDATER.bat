@@ -10,10 +10,8 @@ set "folderName="
 ::LLVM VERSION CHECKING
 IF EXIST !llvm_version! (
     curl https://raw.githubusercontent.com/DevJeffersonL/llvm-mingw/refs/heads/main/COMPILERRUN/clang_version.txt >!llvm_version!
-    CLS
 ) ELSE (
     curl https://raw.githubusercontent.com/DevJeffersonL/llvm-mingw/refs/heads/main/COMPILERRUN/clang_version.txt >>!llvm_version!
-    CLS
 )
 REM READING TEXT_FILE
 for /f "usebackq delims=" %%a in ("!llvm_version!") do (
@@ -24,7 +22,8 @@ for /f "usebackq delims=" %%a in ("!llvm_version!") do (
 for /f "delims=" %%a in ('powershell -Command "clang --version | Select-String -Pattern 'clang version (\S+)' | ForEach-Object { $_.Matches.Groups[1].Value }"') do (
     set clang_version=%%a
 )
-ECHO.
+CLS
+ECHO. 
 ECHO    ============================================
 ECHO    CURRENT VERSION: !Current_Version!
 ECHO    SYSTEM VERSION : !clang_version!    
@@ -37,7 +36,6 @@ IF "!Current_Version!"=="!clang_version!" (
     ECHO YOUR COMPILER IS OUTDATED
     ECHO. & PAUSE
 )
-
 ::-> Path Checking and Adding
 powershell -Command "$addPath = [System.IO.Path]::Combine($([System.Environment]::GetFolderPath('UserProfile')), 'LLVM_MINGW', 'LLVM_MINGW', 'bin'); $currentUserPath = [Environment]::GetEnvironmentVariable('Path', 'User'); if ($currentUserPath -notlike \"*$addPath*\") { $newUserPath = \"$currentUserPath;$addPath\"; [Environment]::SetEnvironmentVariable('Path', $newUserPath, 'User') }"
 ::
