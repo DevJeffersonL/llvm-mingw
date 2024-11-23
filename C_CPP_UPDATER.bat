@@ -10,10 +10,11 @@ set "folderName="
 ::LLVM VERSION CHECKING
 IF EXIST !llvm_version! (
     curl https://raw.githubusercontent.com/DevJeffersonL/llvm-mingw/refs/heads/main/COMPILERRUN/clang_version.txt >!llvm_version!
+    CLS
 ) ELSE (
     curl https://raw.githubusercontent.com/DevJeffersonL/llvm-mingw/refs/heads/main/COMPILERRUN/clang_version.txt >>!llvm_version!
+    CLS
 )
-CLS
 REM READING TEXT_FILE
 for /f "usebackq delims=" %%a in ("!llvm_version!") do (
     set "Current_Version=%%a"
