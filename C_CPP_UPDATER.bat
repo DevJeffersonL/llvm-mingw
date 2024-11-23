@@ -1,16 +1,16 @@
 @ECHO OFF
-CLS
-ECHO.
-ECHO        ::::::::: UPDATING C_CPP_COMPILER ::::::::::
-ECHO. 
 SETLOCAL ENABLEDELAYEDEXPANSION
+ECHO.
+ECHO         ::::::::: UPDATING C_CPP_COMPILER ::::::::::
+ECHO.
+PAUSE
+ECHO.
 ::
 set "FileURL=llvm_mingw.txt"
 set "zipName=llvm_mingw02112024.zip"
 set "llvmMingwDir=!USERPROFILE!\LLVM_MINGW"
 set "subName=LLVM_MINGW"
 set "folderName="
-set ""
 ::-> Path Checking and Adding
 powershell -Command "$addPath = [System.IO.Path]::Combine($([System.Environment]::GetFolderPath('UserProfile')), 'LLVM_MINGW', 'LLVM_MINGW', 'bin'); $currentUserPath = [Environment]::GetEnvironmentVariable('Path', 'User'); if ($currentUserPath -notlike \"*$addPath*\") { $newUserPath = \"$currentUserPath;$addPath\"; [Environment]::SetEnvironmentVariable('Path', $newUserPath, 'User') }"
 ::
@@ -37,6 +37,8 @@ IF EXIST "!zipName!" (
     REM DOWNLOAD THE LLVM-MINGW COMPILER WITH CuRL
     curl -L  -o !zipName! !mingw_url!
 )
+::
+CLS
 ::-> Extracting..............
 if exist "!zipName!" (
     if exist "!llvmMingwDir!" (
