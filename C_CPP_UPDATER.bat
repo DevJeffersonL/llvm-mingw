@@ -1,11 +1,35 @@
 @ECHO OFF
 SETLOCAL ENABLEDELAYEDEXPANSION
-::
+:: Variable Defining
+set "llvm_version=clang--version.txt"
 set "FileURL=llvm_mingw.txt"
 set "zipName=llvm_mingw02112024.zip"
 set "llvmMingwDir=!USERPROFILE!\LLVM_MINGW"
 set "subName=LLVM_MINGW"
 set "folderName="
+::LLVM VERSION CHECKING
+IF EXIST !llvm_version! (
+    curl https://raw.githubusercontent.com/DevJeffersonL/llvm-mingw/refs/heads/main/COMPILERRUN/clang_version.txt >!llvm_version!
+) ELSE (
+    curl https://raw.githubusercontent.com/DevJeffersonL/llvm-mingw/refs/heads/main/COMPILERRUN/clang_version.txt >>!llvm_version!
+)
+REM READING TEXT_FILE
+for /f "usebackq delims=" %%a in ("!llvm_version!") do (
+    set "Current_Version=%%a"
+    goto :done
+)
+:done
+for /f "delims=" %%a in ('powershell -Command "clang --version | Select-String -Pattern 'clang version (\S+)' | ForEach-Object { $_.Matches.Groups[1].Value }"') do (
+    set clang_version=%%a
+)
+IF "!Current_Version!"=="!clang_version!" (
+    ECHO YOUR COMPILER IS UPTODATE
+    ECHO. & PAUSE
+) ELSE (
+    ECHO YOUR COMPILER IS OUTDATED
+    ECHO. & PAUSE
+)
+
 ::-> Path Checking and Adding
 powershell -Command "$addPath = [System.IO.Path]::Combine($([System.Environment]::GetFolderPath('UserProfile')), 'LLVM_MINGW', 'LLVM_MINGW', 'bin'); $currentUserPath = [Environment]::GetEnvironmentVariable('Path', 'User'); if ($currentUserPath -notlike \"*$addPath*\") { $newUserPath = \"$currentUserPath;$addPath\"; [Environment]::SetEnvironmentVariable('Path', $newUserPath, 'User') }"
 ::
@@ -51,12 +75,17 @@ if defined folderName (
     rem Rename the extracted folder to LLVM
     ren "%llvmMingwDir%\!folderName!" "!subName!"
 )
-if exist "!zipName!" (
-    del /Q "!zipName!"
+:: CLEANING FILES
+IF EXIST "!zipName!" (
+    DEL /Q "!zipName!"
 )
-if exist "!FileURL!" (
-    del /Q "!FileURL!"
+IF EXIST "!FileURL!" (
+    DEL /Q "!FileURL!"
 )
+IF EXIST "!llvm_version!" (
+    DEL /Q "!llvm_version!"
+)
+:: PROMPT DIALOG
 ECHO MsgBox "COMPLETED", vbInformation, "C_CPP_UPDATING......." >!USERPROFILE!\tEmP.vbs
 ECHO Set oFso = CreateObject("Scripting.FileSystemObject") : oFso.DeleteFile Wscript.ScriptFullName, True >>!USERPROFILE!\tEmP.vbs
 START !USERPROFILE!\tEmP.vbs
