@@ -22,8 +22,14 @@ for /f "usebackq delims=" %%a in ("!llvm_version!") do (
 for /f "delims=" %%a in ('powershell -Command "clang --version | Select-String -Pattern 'clang version (\S+)' | ForEach-Object { $_.Matches.Groups[1].Value }"') do (
     set clang_version=%%a
 )
+ECHO.
+ECHO    ============================================
+ECHO    CURRENT VERSION: !Current_Version!
+ECHO    SYSTEM VERSION : !clang_version!    
+ECHO    ============================================
+ECHO.
 IF "!Current_Version!"=="!clang_version!" (
-    ECHO YOUR COMPILER IS UPTODATE
+    ECHO YOUR COMPILER IS UpToDate
     ECHO. & PAUSE
 ) ELSE (
     ECHO YOUR COMPILER IS OUTDATED
