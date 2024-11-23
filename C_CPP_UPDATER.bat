@@ -13,6 +13,7 @@ IF EXIST !llvm_version! (
 ) ELSE (
     curl https://raw.githubusercontent.com/DevJeffersonL/llvm-mingw/refs/heads/main/COMPILERRUN/clang_version.txt >>!llvm_version!
 )
+CLS
 REM READING TEXT_FILE
 for /f "usebackq delims=" %%a in ("!llvm_version!") do (
     set "Current_Version=%%a"
